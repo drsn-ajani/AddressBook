@@ -47,7 +47,7 @@ public class Contact {
 
     @Override
     public String toString() {
-        return "Contact{ " +
+        return "Contact{" +
                 "firstName='" + fname + '\'' +
                 ", lastName='" + lname + '\'' +
                 ", address='" + address + '\'' +
@@ -56,6 +56,6 @@ public class Contact {
                 ", zip='" + zip + '\'' +
                 ", phoneNumber='" + phNo + '\'' +
                 ", email='" + email + '\'' +
-                " }";
+                "}\n";
     }
 }
