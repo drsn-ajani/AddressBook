@@ -59,4 +59,12 @@ public class AddressBook<T extends Contact> {
             }
         }
     }
+
+    public void delete(String fname, Scanner scanner) {
+        for (T contact: contacts) {
+            if (contact.getFname().equalsIgnoreCase(fname)) {
+                contacts.remove(contact);
+            }
+        }
+    }
 }

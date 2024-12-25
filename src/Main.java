@@ -18,8 +18,11 @@ public class Main {
             System.out.println("1. Add a new Contact");
             System.out.println("2. Display all Contact");
             System.out.println("3. Edit a Contact");
-            System.out.println("4. Exit");
+            System.out.println("4. Delete a Contact");
+            System.out.println("5. Exit");
             int choice = sc.nextInt();
+
+            String firstName;
 
             switch (choice) {
                 case 1:
@@ -30,10 +33,15 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("Enter the first name of the contact to edit: ");
-                    String firstName = sc.next();
+                    firstName = sc.next();
                     ab.search(firstName, sc);
                     break;
                 case 4:
+                    System.out.println("Enter the first name of the contact to delete: ");
+                    firstName = sc.next();
+                    ab.delete(firstName, sc);
+                    break;
+                case 5:
                     done = true;
                     break;
                 default:
