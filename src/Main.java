@@ -17,14 +17,28 @@ public class Main {
             System.out.println("\tChoose an option");
             System.out.println("1. Add a new Contact");
             System.out.println("2. Display all Contact");
-            System.out.println("3. Exit");
+            System.out.println("3. Edit a Contact");
+            System.out.println("4. Exit");
             int choice = sc.nextInt();
 
             switch (choice) {
-                case 1  ->  ab.addContact(createContact());
-                case 2  ->  ab.display();
-                case 3  ->  done = true;
-                default -> System.out.println("Invalid choice, please enter 1, 2 or 3");
+                case 1:
+                    ab.addContact(createContact());
+                    break;
+                case 2:
+                    ab.display();
+                    break;
+                case 3:
+                    System.out.println("Enter the first name of the contact to edit: ");
+                    String firstName = sc.next();
+                    ab.search(firstName, sc);
+                    break;
+                case 4:
+                    done = true;
+                    break;
+                default:
+                    System.out.println("Invalid choice, please enter 1, 2 or 3");
+                    break;
             }
         } while (!done);
 
