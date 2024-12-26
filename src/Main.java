@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
@@ -5,12 +6,88 @@ public class Main {
         System.out.println("Welcome to AddressBook Program\n");
 
 //        Contact contact = new Contact("drsn", "A", "xyz", "xyz", "xyz", "1234", "1234567891", "xyz@xyz.com");
-//
 //        System.out.println(contact);
 
-        AddressBook<Contact> ab = new AddressBook<>();
-
+        HashMap<String, AddressBook<Contact>> address_book_system = new HashMap<>();
         Scanner sc = new Scanner(System.in);
+
+//        AddressBook<Contact> ab = new AddressBook<>();
+        AddressBook<Contact> current_ab = null;
+        boolean done = false;
+
+        do {
+            System.out.println("\tChoose your options:");
+            System.out.println("1. Crete a new AddressBook");
+            System.out.println("2. Select an AddressBook");
+            System.out.println("3. Displaying Existing AddressBook");
+            System.out.println("4. Manage Contacts in the AddressBook");
+            System.out.println("5. Exit");
+
+            int choice = sc.nextInt();
+            sc.nextLine();
+            String name;
+
+            switch(choice) {
+                case 1:
+                    System.out.println("Enter the name of the new AddressBook: ");
+                    name = sc.nextLine();
+                    if (address_book_system.containsKey(name)) {
+                        System.out.println("Address Book already exists!");
+                    } else {
+                        AddressBook<Contact> newAddressbook = new AddressBook<>();
+                        address_book_system.put(name, newAddressbook);
+                        System.out.println("New AddressBook created!");
+                    }
+                    break;
+                case 2:
+                    System.out.println("Enter the name of the AddressBook you want to access: ");
+                    name = sc.nextLine();
+                    if (address_book_system.containsKey(name)) {
+                        current_ab = address_book_system.get(name);
+                        System.out.println("Switched to AddressBook " + name);
+                    } else {
+                        System.out.println("AddressBook not found!");
+                    }
+                    break;
+                case 3:
+                    System.out.println("Available AddressBooks are: ");
+                    if (address_book_system.isEmpty()) {
+                        System.out.println("No AddressBook found!");
+                    } else {
+                        for (String key : address_book_system.keySet()) {
+                            System.out.println("- " + key);
+                        }
+                    }
+                    break;
+                case 4:
+                    if (current_ab != null) {
+                        System.out.println("Current AddressBook is " + current_ab);
+                        manageAddressBook(current_ab, sc);
+                    } else {
+                        System.out.println("No AddressBook is selected..!!");
+                    }
+                    break;
+                case 5:
+                    done = true;
+                    break;
+                default:
+                    System.out.println("Please enter a valid option!");
+                    break;
+
+
+            }
+
+        } while (!done);
+
+
+
+        sc.close();
+
+
+    }
+
+    public static void manageAddressBook(AddressBook<Contact> ab, Scanner sc) {
+
         boolean done = false;
 
         do {
@@ -49,15 +126,16 @@ public class Main {
                     done = true;
                     break;
                 default:
-                    System.out.println("Invalid choice, please enter 1, 2 or 3");
+                    System.out.println("Invalid choice, please enter valid number!");
                     break;
             }
         } while (!done);
 
-        sc.close();
-
-
     }
+
+
+
+
     public static Contact createContact() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the first name: ");
