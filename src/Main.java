@@ -80,6 +80,7 @@ public class Main {
         return c1;
     }
 
+
     public static void add_multiple_contact(AddressBook<Contact> ab) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the number of contacts you want to add: ");
