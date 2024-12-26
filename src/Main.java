@@ -16,10 +16,11 @@ public class Main {
         do {
             System.out.println("\tChoose an option");
             System.out.println("1. Add a new Contact");
-            System.out.println("2. Display all Contact");
-            System.out.println("3. Edit a Contact");
-            System.out.println("4. Delete a Contact");
-            System.out.println("5. Exit");
+            System.out.println("2. Add Multiple New Contact");
+            System.out.println("3. Display all Contact");
+            System.out.println("4. Edit a Contact");
+            System.out.println("5. Delete a Contact");
+            System.out.println("6. Exit");
             int choice = sc.nextInt();
 
             String firstName;
@@ -29,19 +30,22 @@ public class Main {
                     ab.addContact(createContact());
                     break;
                 case 2:
-                    ab.display();
+                    add_multiple_contact(ab);
                     break;
                 case 3:
+                    ab.display();
+                    break;
+                case 4:
                     System.out.println("Enter the first name of the contact to edit: ");
                     firstName = sc.next();
                     ab.search(firstName, sc);
                     break;
-                case 4:
+                case 5:
                     System.out.println("Enter the first name of the contact to delete: ");
                     firstName = sc.next();
                     ab.delete(firstName, sc);
                     break;
-                case 5:
+                case 6:
                     done = true;
                     break;
                 default:
@@ -74,5 +78,17 @@ public class Main {
         String Email = sc.nextLine();
         Contact c1 = new Contact(fname, lname, Address, City, State, zip, Phone, Email);
         return c1;
+    }
+
+    public static void add_multiple_contact(AddressBook<Contact> ab) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number of contacts you want to add: ");
+        int n = sc.nextInt();
+
+        for (int i = 0; i < n; i++) {
+            ab.addContact(createContact());
+        }
+
+        System.out.println(n + " contacts added successfully");
     }
 }

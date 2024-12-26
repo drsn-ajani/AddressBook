@@ -64,7 +64,9 @@ public class AddressBook<T extends Contact> {
         for (T contact: contacts) {
             if (contact.getFname().equalsIgnoreCase(fname)) {
                 contacts.remove(contact);
+                return;
             }
         }
+        System.out.println("Contact not found");
     }
 }
